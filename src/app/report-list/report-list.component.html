@@ -1,0 +1,31 @@
+<!-- src/app/components/report-list/report-list.component.html -->
+<div class="reports-container">
+    <h1>Reportes Guardados</h1>
+    
+    <div class="reports-list" *ngIf="reports.length > 0">
+        <div *ngFor="let report of reports" class="report-item" [routerLink]="['/report', report.id]">
+            <div class="report-image">
+                <img [src]="report.imageUrl" alt="Imagen del Reporte">
+            </div>
+            <div class="report-info">
+                <h4>Equipo: {{ report.equipmentId }}</h4>
+                <p class="report-description">{{ report.description }}{{ report.description.length > 80 ? '...' : '' }}</p>
+                <p class="report-date">{{ report.timestamp | date:'short' }}</p>
+            </div>
+            <div class="report-controls">
+                <button class="view-btn" [routerLink]="['/report', report.id]">👁️</button>
+                <button class="delete-btn" (click)="deleteReport(report.id, $event)">❌</button>
+            </div>
+        </div>
+    </div>
+    
+    <div *ngIf="reports.length === 0" class="no-reports">
+        <p>No hay reportes guardados</p>
+    </div>
+    
+    <div class="action-buttons">
+        <button class="add-report-button" routerLink="/new-report">
+            ➕ Añadir Nuevo Reporte
+        </button>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!-- src/app/components/report-detail/report-detail.component.html -->
+<div class="report-detail-container" *ngIf="report">
+    <h1>Detalles del Reporte</h1>
+    
+    <div class="report-detail-image">
+        <img [src]="report.imageUrl" alt="Imagen del Reporte">
+    </div>
+    
+    <div class="report-details">
+        <p><strong>ID del Equipo:</strong> {{ report.equipmentId }}</p>
+        <p><strong>Fecha:</strong> {{ report.timestamp | date:'medium' }}</p>
+        <p><strong>Descripción:</strong></p>
+        <p class="report-detail-description">{{ report.description }}</p>
+    </div>
+    
+    <div class="report-actions">
+        <button class="back-button" routerLink="/reports">
+            ⬅️ Volver a la lista
+        </button>
+        <button class="delete-button" (click)="deleteReport()">
+            ❌ Eliminar Reporte
+        </button>
+    </div>
+</div>
+
+<div class="not-found" *ngIf="!report">
+    <p>El reporte no existe o ha sido eliminado</p>
+    <button routerLink="/reports">Volver a la lista</button>
+</div>
